@@ -1,3 +1,7 @@
+# Import the necessary settings from creds.py
+from creds import MONGO_URI, MONGO_DATABASE, MONGO_COLLECTION
+
+
 # -*- coding: utf-8 -*-
 
 # Scrapy settings for src project
@@ -66,9 +70,9 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'src.pipelines.mysql.MySQLPipeline': 300,
-}
+# ITEM_PIPELINES = {
+#    'src.pipelines.mysql.MySQLPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -90,3 +94,28 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+# Splash settings
+SPLASH_URL = 'http://localhost:8050'
+
+
+# # Enable Splash downloader middleware and change HttpCompressionMiddleware priority
+# DOWNLOADER_MIDDLEWARES = {
+#     'scrapy_splash.SplashCookiesMiddleware': 723,
+#     'scrapy_splash.SplashMiddleware': 725,
+#     'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+# }
+
+# # Enable Splash Deduplicate Args Filter
+# SPIDER_MIDDLEWARES = {
+#     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+# }
+
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
+# MongoDB settings using values from creds.py
+MONGO_URI = MONGO_URI
+MONGO_DATABASE = MONGO_DATABASE
+ITEM_PIPELINES = {
+    'src.pipelines.mongo_pipeline.MongoPipeline': 300,
+}
