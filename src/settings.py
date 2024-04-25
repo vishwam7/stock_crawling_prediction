@@ -117,5 +117,5 @@ HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 MONGO_URI = MONGO_URI
 MONGO_DATABASE = MONGO_DATABASE
 ITEM_PIPELINES = {
-    'src.pipelines.mongo_pipeline.MongoPipeline': 300,
+  'src.pipelines.mongo_pipeline.MongoPipeline': 300,
 }

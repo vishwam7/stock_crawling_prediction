@@ -34,4 +34,16 @@ class Stock(scrapy.Item):
     market_cap = scrapy.Field()  # Market Cap
     pe_ratio_ttm = scrapy.Field()  # PE Ratio (TTM)
     # The 52-week range is typically represented visually on websites and might not be directly scrapeable as text. You may need to handle this differently or exclude it if not essential.
-    week_52_range = scrapy.Field() 
+    week_52_range = scrapy.Field()
+    history_id = scrapy.Field()  # Foreign key to StockHistory 
+
+
+class StockHistory(scrapy.Item):
+    symbol = scrapy.Field()
+    date = scrapy.Field()
+    open = scrapy.Field()
+    high = scrapy.Field()
+    low = scrapy.Field()
+    close = scrapy.Field()
+    adj_close = scrapy.Field()
+    volume = scrapy.Field()
